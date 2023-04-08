@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="mask-icon" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"goo-aw233.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="使用 SFC&amp;DISM 命令和（或）镜像修复 Microsoft Windows">
+<meta property="og:type" content="article">
+<meta property="og:title" content="修复 Windows 系统组件">
+<meta property="og:url" content="https://goo-aw233.github.io/zh-CN/tutorial/Windows/repairsystem/index.html">
+<meta property="og:site_name" content="GuCATs&#39;摸鱼站">
+<meta property="og:description" content="使用 SFC&amp;DISM 命令和（或）镜像修复 Microsoft Windows">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem2.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem1.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem3.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem4.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem5.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem6.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem7.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem8.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem9.png">
+<meta property="article:published_time" content="2022-07-06T12:15:35.000Z">
+<meta property="article:modified_time" content="2023-04-07T15:31:38.573Z">
+<meta property="article:author" content="GuCATs">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem2.png">
+
+
+<link rel="canonical" href="https://goo-aw233.github.io/zh-CN/tutorial/Windows/repairsystem/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://goo-aw233.github.io/zh-CN/tutorial/Windows/repairsystem/","path":"zh-CN/tutorial/Windows/repairsystem/","title":"修复 Windows 系统组件"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>修复 Windows 系统组件 | GuCATs'摸鱼站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GuCATs'摸鱼站</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">海納百川，有容乃大</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-首页"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-pages-butterfly"><a href="/next/" rel="section"><i class="fa-solid fa-flask fa-fw"></i>Pages Butterfly</a></li><li class="menu-item menu-item-标签"><a href="/tags/" rel="section"><i class="fas fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-分类"><a href="/categories/" rel="section"><i class="fas fa-folder-open fa-fw"></i>分类</a></li><li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="iconfont icon-guanli fa-fw"></i>归档</a></li><li class="menu-item menu-item-记事本"><a href="/notes/" rel="section"><i class="fa fa-sticky-note fa-fw"></i>记事本</a></li><li class="menu-item menu-item-帮助"><a href="/help/" rel="section"><i class="fa fa-question-circle fa-fw"></i>帮助</a></li><li class="menu-item menu-item-关于我"><a href="/about/" rel="section"><i class="fa-solid fa-address-card fa-fw"></i>关于我</a></li><li class="menu-item menu-item-友链"><a href="/link/" rel="section"><i class="fas fa-link fa-fw"></i>友链</a></li><li class="menu-item menu-item-站点地图"><a href="/sitemap.xml" rel="section"><i class="iconfont icon-browser fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-资源列表"><a href="/resources/" rel="section"><i class="iconfont icon-wenjianjia fa-fw"></i>资源列表</a></li><li class="menu-item menu-item-english-(united-states)"><a href="/en-us/" rel="section"><i class="fa-solid fa-earth-americas fa-fw"></i>English (United States)</a></li><li class="menu-item menu-item-language"><a href="/" rel="section"><i class="fas fa-language fa-fw"></i>American English</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E5%89%8D%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">用前说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">实验环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SFC-amp-DISM-%E5%91%BD%E4%BB%A4%E4%BF%AE%E5%A4%8D"><span class="nav-number">2.</span> <span class="nav-text">SFC&amp;DISM 命令修复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E6%98%A0%E5%83%8F%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BF%AE%E5%A4%8D"><span class="nav-number">2.1.</span> <span class="nav-text">检查映像是否可修复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D%E6%8D%9F%E5%9D%8F%E7%9A%84%E6%98%A0%E5%83%8F"><span class="nav-number">2.2.</span> <span class="nav-text">修复损坏的映像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8B%A5%E5%8F%AA%E8%83%BD%E5%9C%A8-WinRE-%E4%B8%8B%E4%BF%AE%E5%A4%8D"><span class="nav-number">2.3.</span> <span class="nav-text">若只能在 WinRE 下修复</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E4%BF%AE%E5%A4%8D"><span class="nav-number">3.</span> <span class="nav-text">镜像修复</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-number">4.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8F%90%E5%8F%96-install-wim"><span class="nav-number">4.1.</span> <span class="nav-text">如何提取 install.wim</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GuCATs</p>
+  <div class="site-description" itemprop="description">摒弃迂腐思想，顺应自由开放的时代潮流</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://goo-aw233.github.io/zh-CN/tutorial/Windows/repairsystem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GuCATs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GuCATs'摸鱼站">
+      <meta itemprop="description" content="摒弃迂腐思想，顺应自由开放的时代潮流">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="修复 Windows 系统组件 | GuCATs'摸鱼站">
+      <meta itemprop="description" content="使用 SFC&DISM 命令和（或）镜像修复 Microsoft Windows">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          修复 Windows 系统组件
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-06 20:15:35" itemprop="dateCreated datePublished" datetime="2022-07-06T20:15:35+08:00">2022-07-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-04-07 23:31:38" itemprop="dateModified" datetime="2023-04-07T23:31:38+08:00">2023-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">使用 SFC&DISM 命令和（或）镜像修复 Microsoft Windows</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="用前说明"><a href="#用前说明" class="headerlink" title="用前说明"></a>用前说明</h2><p>本教程节选改编自 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/troubleshoot/windows-server/deployment/fix-windows-update-errors">Microsoft Learn</a></p>
+<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>系统版本≥Windows 7 SP1 或 Windows Server 2008</p>
+<ul>
+<li>（不是 SP1？<a href="/zh-CN/tutorial/Windows/NT6upd/" title="解决 Windows Vista 和 7 问题合集（1）">点这里看升级教程</a>）</li>
+</ul>
+<p>PowerShell<br>—-以下根据你的系统版本来选择—-<br><a target="_blank" rel="noopener" href="https://aka.ms/DownloadWindows11">Windows 11</a><br><a target="_blank" rel="noopener" href="https://aka.ms/DownloadWindows10">Windows 10</a><br><a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/software-download/windows8ISO">Windows 8.1</a><br><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/software-download/windowsinsiderpreviewiso">Windows 预览版</a></p>
+<h2 id="SFC-amp-DISM-命令修复"><a href="#SFC-amp-DISM-命令修复" class="headerlink" title="SFC&amp;DISM 命令修复"></a>SFC&amp;DISM 命令修复</h2><hr>
+<p>该部分不适用于 Windows 7 SP1 或 Windows Server 2008，请转到<a target="_blank" rel="noopener" href="https://learn.microsoft.com/troubleshoot/windows-server/deployment/fix-windows-update-errors">Microsoft Learn</a></p>
+<hr>
+<p>在任意页面按下 Windows 徽标键+X 打开，单击 Windows PowerShell（管理员）（Windows 10）或 Windows 终端（管理员）（Windows 11）<br>系统版本≤Windows 8.1 或 Windows Server 2012 则需要按下 Windows 徽标键+Q 打开搜索框 ，搜索 PowerShell，并右键以管理员身份运行</p>
+<h3 id="检查映像是否可修复"><a href="#检查映像是否可修复" class="headerlink" title="检查映像是否可修复"></a>检查映像是否可修复</h3><p>扫描映像以检查损坏，此操作将需要几分钟时间</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISM.exe /Online /Cleanup<span class="literal">-Image</span> /ScanHealth</span><br></pre></td></tr></table></figure>
+
+<p>检查映像以查看是否检测到任何损坏</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISM.exe /Online /Cleanup<span class="literal">-Image</span> /CheckHealth</span><br></pre></td></tr></table></figure>
+<p>使用 &#x2F;CheckHealth 参数时，DISM 工具将报告映像是正常、可修复还是不可修复，如果映像不可修复，则应丢弃映像并重新开始；如果映像是可修复的，则可以使用 &#x2F;RestoreHealth 参数来修复映像</p>
+<h3 id="修复损坏的映像"><a href="#修复损坏的映像" class="headerlink" title="修复损坏的映像"></a>修复损坏的映像</h3><p>DISM 将通过 Windows Update 来提供修复损坏所需的文件</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISM.exe /Online /Cleanup<span class="literal">-Image</span> /Restorehealth</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>如果 Windows Update 功能已损坏或无法启动，请更换修复源</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISM.exe /Online /Cleanup<span class="literal">-Image</span> /RestoreHealth /Source:&lt;install.wim 所在路径&gt; /LimitAccess</span><br></pre></td></tr></table></figure>
+<p>其中，&lt;文件路径&gt;是 install.wim 映像所在的位置<br>（如何提取 install.wim 请看附录）<br>比如我将 install.wim 放在了桌面上的 Image 文件夹（使用了相对路径），或者 D 盘的 Image 文件夹，则命令就是</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISM.exe /Online /Cleanup<span class="literal">-Image</span> /RestoreHealth /Source:%USERPRIFOLE%\Desktop\Image /LimitAccess</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISM.exe /Online /Cleanup<span class="literal">-Image</span> /RestoreHealth /Source:D:\Image /LimitAccess</span><br></pre></td></tr></table></figure>
+<p>完成命令操作可能需要几分钟时间</p>
+<p>完成后继续使用 SFC 命令修复镜像</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sfc /SCANNOW</span><br></pre></td></tr></table></figure>
+
+<h3 id="若只能在-WinRE-下修复"><a href="#若只能在-WinRE-下修复" class="headerlink" title="若只能在 WinRE 下修复"></a>若只能在 WinRE 下修复</h3><p>如果你在 WinRE 且进不去系统，发现使用 <code>DISM.exe /Online /Cleanup-Image /RestoreHealth /Source:<文件路径> /LimitAccess</code> 提示“DISM 不支持使用 &#x2F;Online 选项为 Windows PE 提供服务。”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem2.png" alt="WinRE 报错"><br>所以需要以下的命令</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISM.exe /Image:&lt;系统盘盘符&gt; /Cleanup-Image /RestoreHealth /Source:&lt;install.wim 所在路径&gt;</span><br></pre></td></tr></table></figure>
+<p>若我的系统盘盘符为 C:，且 install.wim 存放在 D 盘的 Image 文件夹，则命令为</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DISM.exe /Image:C: /Cleanup-Image /RestoreHealth /Source:D:\Image</span><br></pre></td></tr></table></figure>
+<p><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem1.png" alt="PE 下修复 Windows"></p>
+<h2 id="镜像修复"><a href="#镜像修复" class="headerlink" title="镜像修复"></a>镜像修复</h2><p>使用镜像根目录下的 Setup 程序对系统进行修复（升级）（所需时间≥45 分钟，好处是可以不升级系统版本的情况下完整地修复系统）<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem3.png" alt="Setup"><br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem4.png" alt="同意许可协议"><br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem5.png" alt="准备安装"><br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem6.png" alt="开始安装"><br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem7.png" alt="正在安装"><br>稍等片刻，电脑将重启多次，完成后即可正常使用</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="如何提取-install-wim"><a href="#如何提取-install-wim" class="headerlink" title="如何提取 install.wim"></a>如何提取 install.wim</h3><p>先用压缩软件解压 ISO 镜像到一个空白文件夹<br>然后在 sources 文件夹下找到 install.wim 即可<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem8.png"><br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/repairsystem/repairsystem9.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/zh-CN/tutorial/Windows/reinstallOS/" rel="prev" title="给电脑重装 Windows">
+                  <i class="fa fa-chevron-left"></i> 给电脑重装 Windows
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/zh-CN/tutorial/VM/QEMU/WindowsARMonQEMU/" rel="next" title="QEMU 安装 Windows ARM">
+                  QEMU 安装 Windows ARM <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuCATs</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

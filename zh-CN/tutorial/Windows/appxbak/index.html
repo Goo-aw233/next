@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="mask-icon" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"goo-aw233.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="用 WSAppBak 把 UWP 软件打包成 APPX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="备份 Windows 10&#x2F;11 的 UWP 应用">
+<meta property="og:url" content="https://goo-aw233.github.io/zh-CN/tutorial/Windows/appxbak/index.html">
+<meta property="og:site_name" content="GuCATs&#39;摸鱼站">
+<meta property="og:description" content="用 WSAppBak 把 UWP 软件打包成 APPX">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak1.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak2.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak3.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak4.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak5.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak6.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak7.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak1.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak8.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak9.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak10.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak11.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak12.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak13.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak14.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak15.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak16.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak17.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak17.1.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak18.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak19.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak20.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak21.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak22.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak22.png">
+<meta property="article:published_time" content="2022-04-04T05:58:45.000Z">
+<meta property="article:modified_time" content="2023-04-07T15:30:56.445Z">
+<meta property="article:author" content="GuCATs">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak1.png">
+
+
+<link rel="canonical" href="https://goo-aw233.github.io/zh-CN/tutorial/Windows/appxbak/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://goo-aw233.github.io/zh-CN/tutorial/Windows/appxbak/","path":"zh-CN/tutorial/Windows/appxbak/","title":"备份 Windows 10/11 的 UWP 应用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>备份 Windows 10/11 的 UWP 应用 | GuCATs'摸鱼站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GuCATs'摸鱼站</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">海納百川，有容乃大</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-首页"><a href="/" rel="section"><i class="fas fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-pages-butterfly"><a href="/next/" rel="section"><i class="fa-solid fa-flask fa-fw"></i>Pages Butterfly</a></li><li class="menu-item menu-item-标签"><a href="/tags/" rel="section"><i class="fas fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-分类"><a href="/categories/" rel="section"><i class="fas fa-folder-open fa-fw"></i>分类</a></li><li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="iconfont icon-guanli fa-fw"></i>归档</a></li><li class="menu-item menu-item-记事本"><a href="/notes/" rel="section"><i class="fa fa-sticky-note fa-fw"></i>记事本</a></li><li class="menu-item menu-item-帮助"><a href="/help/" rel="section"><i class="fa fa-question-circle fa-fw"></i>帮助</a></li><li class="menu-item menu-item-关于我"><a href="/about/" rel="section"><i class="fa-solid fa-address-card fa-fw"></i>关于我</a></li><li class="menu-item menu-item-友链"><a href="/link/" rel="section"><i class="fas fa-link fa-fw"></i>友链</a></li><li class="menu-item menu-item-站点地图"><a href="/sitemap.xml" rel="section"><i class="iconfont icon-browser fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-资源列表"><a href="/resources/" rel="section"><i class="iconfont icon-wenjianjia fa-fw"></i>资源列表</a></li><li class="menu-item menu-item-english-(united-states)"><a href="/en-us/" rel="section"><i class="fa-solid fa-earth-americas fa-fw"></i>English (United States)</a></li><li class="menu-item menu-item-language"><a href="/" rel="section"><i class="fas fa-language fa-fw"></i>American English</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E5%89%8D%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">用前说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%EF%BC%88%E4%BB%85%E9%99%90-Windows-10-%E5%8F%8A%E6%9B%B4%E9%AB%98%E7%89%88%E6%9C%AC%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">实验环境（仅限 Windows 10 及更高版本）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E5%8F%96-APPX"><span class="nav-number">2.</span> <span class="nav-text">提取 APPX</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E6%9D%83%E9%99%90%E4%B8%8D%E8%B6%B3"><span class="nav-number">2.1.</span> <span class="nav-text">如果权限不足</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%B8%B8%E6%83%85%E5%86%B5"><span class="nav-number">2.2.</span> <span class="nav-text">正常情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E4%BB%BB%E8%AF%81%E4%B9%A6%E5%B9%B6%E5%AE%89%E8%A3%85-APPX"><span class="nav-number">3.</span> <span class="nav-text">信任证书并安装 APPX</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%B8%B8%E6%83%85%E5%86%B5-1"><span class="nav-number">3.1.</span> <span class="nav-text">正常情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%BE%E5%88%B0%E6%89%93%E5%8C%85%E5%A5%BD%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%8C%E5%B7%A6%E9%94%AE%E5%8D%95%E5%87%BB%E9%80%89%E6%8B%A9%E5%AE%83%EF%BC%8C%E7%84%B6%E5%90%8E%E5%8F%B3%E9%94%AE%E9%80%89%E6%8B%A9%E2%80%9C%E5%B1%9E%E6%80%A7-R-%E2%80%9D%E5%9C%A8%E5%BC%B9%E5%87%BA%E7%9A%84%E7%AA%97%E5%8F%A3%E4%B8%AD%E7%82%B9%E5%87%BB%E2%80%9C%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D%E2%80%9D%EF%BC%8C%E9%80%89%E4%B8%AD%E8%AF%81%E4%B9%A6%E5%8F%8C%E5%87%BB%EF%BC%8C%E5%9C%A8%E6%96%B0%E7%AA%97%E5%8F%A3%E7%82%B9%E5%87%BB%E2%80%9C%E6%9F%A5%E7%9C%8B%E8%AF%81%E4%B9%A6-V-%E2%80%9D%EF%BC%8C%E7%84%B6%E5%90%8E%E5%9C%A8%E6%9C%80%E5%90%8E%E5%BC%B9%E5%87%BA%E7%9A%84%E7%AA%97%E5%8F%A3%E7%82%B9%E5%87%BB%E2%80%9C%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6-I-%E2%80%9D%E9%80%89%E6%8B%A9%E2%80%9C%E6%9C%AC%E5%9C%B0%E8%AE%A1%E7%AE%97%E6%9C%BA-L-%E2%80%9D%EF%BC%8C%E7%84%B6%E5%90%8E%E7%82%B9%E5%87%BB%E2%80%9C%E4%B8%8B%E4%B8%80%E6%AD%A5-N-%E2%80%9D%E5%87%BA%E7%8E%B0-UAC-%E5%BC%B9%E7%AA%97%E7%82%B9%E5%87%BB%E6%98%AF%E9%80%89%E6%8B%A9%E2%80%9C%E5%B0%86%E6%89%80%E6%9C%89%E7%9A%84%E8%AF%81%E4%B9%A6%E9%83%BD%E6%94%BE%E5%85%A5%E4%B8%8B%E5%88%97%E5%AD%98%E5%82%A8-P-%E2%80%9D%EF%BC%8C%E7%82%B9%E5%87%BB%E2%80%9C%E6%B5%8F%E8%A7%88-L-%E2%80%9D%EF%BC%8C%E9%80%89%E6%8B%A9%E2%80%9C%E5%8F%97%E4%BF%A1%E4%BB%BB%E7%9A%84%E6%A0%B9%E8%AF%81%E4%B9%A6%E9%A2%81%E5%8F%91%E6%9C%BA%E6%9E%84%E2%80%9D%EF%BC%8C%E7%82%B9%E5%87%BB%E2%80%9C%E7%A1%AE%E5%AE%9A%E2%80%9D%EF%BC%8C%E7%84%B6%E5%90%8E%E2%80%9C%E4%B8%8B%E4%B8%80%E6%AD%A5%E2%80%9D%E5%9C%A8%E6%9C%80%E5%90%8E%E7%9A%84%E7%AA%97%E5%8F%A3%E7%82%B9%E5%87%BB%E2%80%9C%E5%AE%8C%E6%88%90-F-%E2%80%9D%E7%84%B6%E5%90%8E%E5%B0%B1%E5%AF%BC%E5%85%A5%E6%88%90%E5%8A%9F%E4%BA%86%E6%9C%80%E5%90%8E%E5%8F%8C%E5%87%BB%E6%89%93%E5%BC%80-APPX-%E5%AE%89%E8%A3%85%E5%8C%85%E5%8D%B3%E5%8F%AF%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">找到打包好的文件，左键单击选择它，然后右键选择“属性(R)”在弹出的窗口中点击“数字签名”，选中证书双击，在新窗口点击“查看证书(V)”，然后在最后弹出的窗口点击“安装证书(I)”选择“本地计算机(L)”，然后点击“下一步(N)”出现 UAC 弹窗点击是选择“将所有的证书都放入下列存储(P)”，点击“浏览(L)”，选择“受信任的根证书颁发机构”，点击“确定”，然后“下一步”在最后的窗口点击“完成(F)”然后就导入成功了最后双击打开 APPX 安装包即可安装软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E6%98%AF-LTS-%E6%88%96%E6%B2%A1%E6%9C%89-AppInstall-%E7%9A%84-Windows"><span class="nav-number">4.1.</span> <span class="nav-text">如果你是 LTS 或没有 AppInstall 的 Windows</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GuCATs</p>
+  <div class="site-description" itemprop="description">摒弃迂腐思想，顺应自由开放的时代潮流</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://goo-aw233.github.io/zh-CN/tutorial/Windows/appxbak/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="GuCATs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GuCATs'摸鱼站">
+      <meta itemprop="description" content="摒弃迂腐思想，顺应自由开放的时代潮流">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="备份 Windows 10/11 的 UWP 应用 | GuCATs'摸鱼站">
+      <meta itemprop="description" content="用 WSAppBak 把 UWP 软件打包成 APPX">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          备份 Windows 10/11 的 UWP 应用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-04 13:58:45" itemprop="dateCreated datePublished" datetime="2022-04-04T13:58:45+08:00">2022-04-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-04-07 23:30:56" itemprop="dateModified" datetime="2023-04-07T23:30:56+08:00">2023-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">用 WSAppBak 把 UWP 软件打包成 APPX</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="用前说明"><a href="#用前说明" class="headerlink" title="用前说明"></a>用前说明</h2><h3 id="实验环境（仅限-Windows-10-及更高版本）"><a href="#实验环境（仅限-Windows-10-及更高版本）" class="headerlink" title="实验环境（仅限 Windows 10 及更高版本）"></a>实验环境（仅限 Windows 10 及更高版本）</h3><p><a target="_blank" rel="noopener" href="https://ys8rx-my.sharepoint.com/:f:/g/personal/gucats_ys8rx_onmicrosoft_com/Ep3mNuzhlktHn3j5OlKAAcMBhj1mf-t41_3sUo2El8b7dg?e=R0NiLK">WSAppBak</a></p>
+<h2 id="提取-APPX"><a href="#提取-APPX" class="headerlink" title="提取 APPX"></a>提取 APPX</h2><p>先运行你要提取的软件，然后打开“任务管理器”并点开下方的“详细信息(D)”<br>展开软件项，右击主程序，选择“打开文件所在的位置(O)”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak1.png" alt="获取安装路径"></p>
+<hr>
+<h3 id="如果权限不足"><a href="#如果权限不足" class="headerlink" title="如果权限不足"></a>如果权限不足</h3><p>就像这样<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak2.png" alt="无权访问文件夹"><br>点击继续<br>出现拒绝访问文件夹，点击“安全选项卡”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak3.png" alt="安全选项卡"><br>然后点击“高级(V)”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak4.png" alt="获取权限"><br>然后点击上方的“更改(C)”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak5.png" alt="更改权限"><br>然后输入你电脑的用户名，完成后点击“确定”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak6.png" alt="更改所有者"><br>然后再点击“确定”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak7.png" alt="确定更改"><br>把所有资源管理器窗口退出后出现在“任务管理器”选择“打开文件所在位置”<br>再次出现弹窗点击“确定”即可<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak1.png" alt="打开位置"><br>然后就可以正常访问了<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak8.png" alt="安装路径"></p>
+<hr>
+<h3 id="正常情况"><a href="#正常情况" class="headerlink" title="正常情况"></a>正常情况</h3><p>在新打开的窗口中会自动选中文件夹，双击点开它<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak9.png" alt="安装路径"><br>然后右键单击地址栏的空白处，选择“复制地址(C)”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak10.png" alt="复制地址"><br>打开“WSAppBak”，单击右键将地址粘贴进去然后回车<br>接着再输入（粘贴）要输出的文件夹，再回车<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak11.png" alt="粘贴路径"><br>等待一下就开始跑代码<br>完成后会出现弹窗，让你<font color=yellow>自定义密码，但你可以直接点击“OK”来跳过密码</font><br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak12.png" alt="自定义密码"><br>空白密码则会再询问你，点击“是(Y)”即可<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak13.png" alt="确认空密码"><br>等待一会，出现“Press any Key to exit…. :)”的时候按任意键即可退出<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak14.png" alt="按任意键退出"></p>
+<h2 id="信任证书并安装-APPX"><a href="#信任证书并安装-APPX" class="headerlink" title="信任证书并安装 APPX"></a>信任证书并安装 APPX</h2><h3 id="正常情况-1"><a href="#正常情况-1" class="headerlink" title="正常情况"></a>正常情况</h3><h2 id="找到打包好的文件，左键单击选择它，然后右键选择“属性-R-”在弹出的窗口中点击“数字签名”，选中证书双击，在新窗口点击“查看证书-V-”，然后在最后弹出的窗口点击“安装证书-I-”选择“本地计算机-L-”，然后点击“下一步-N-”出现-UAC-弹窗点击是选择“将所有的证书都放入下列存储-P-”，点击“浏览-L-”，选择“受信任的根证书颁发机构”，点击“确定”，然后“下一步”在最后的窗口点击“完成-F-”然后就导入成功了最后双击打开-APPX-安装包即可安装软件"><a href="#找到打包好的文件，左键单击选择它，然后右键选择“属性-R-”在弹出的窗口中点击“数字签名”，选中证书双击，在新窗口点击“查看证书-V-”，然后在最后弹出的窗口点击“安装证书-I-”选择“本地计算机-L-”，然后点击“下一步-N-”出现-UAC-弹窗点击是选择“将所有的证书都放入下列存储-P-”，点击“浏览-L-”，选择“受信任的根证书颁发机构”，点击“确定”，然后“下一步”在最后的窗口点击“完成-F-”然后就导入成功了最后双击打开-APPX-安装包即可安装软件" class="headerlink" title="找到打包好的文件，左键单击选择它，然后右键选择“属性(R)”在弹出的窗口中点击“数字签名”，选中证书双击，在新窗口点击“查看证书(V)”，然后在最后弹出的窗口点击“安装证书(I)”选择“本地计算机(L)”，然后点击“下一步(N)”出现 UAC 弹窗点击是选择“将所有的证书都放入下列存储(P)”，点击“浏览(L)”，选择“受信任的根证书颁发机构”，点击“确定”，然后“下一步”在最后的窗口点击“完成(F)”然后就导入成功了最后双击打开 APPX 安装包即可安装软件"></a>找到打包好的文件，左键单击选择它，然后右键选择“属性(R)”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak15.png" alt="属性"><br>在弹出的窗口中点击“数字签名”，选中证书双击，在新窗口点击“查看证书(V)”，然后在最后弹出的窗口点击“安装证书(I)”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak16.png" alt="信任证书"><br>选择“本地计算机(L)”，然后点击“下一步(N)”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak17.png" alt="选择位置"><br>出现 UAC 弹窗点击是<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak17.1.png" alt="信任 UAC"><br>选择“将所有的证书都放入下列存储(P)”，点击“浏览(L)”，选择“受信任的根证书颁发机构”，点击“确定”，然后“下一步”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak18.png" alt="选择存放目录"><br>在最后的窗口点击“完成(F)”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak19.png" alt="完成"><br>然后就导入成功了<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak20.png" alt="成功"><br>最后双击打开 APPX 安装包即可安装软件<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak21.png" alt="安装"></h2><h3 id="如果你是-LTS-或没有-AppInstall-的-Windows"><a href="#如果你是-LTS-或没有-AppInstall-的-Windows" class="headerlink" title="如果你是 LTS 或没有 AppInstall 的 Windows"></a>如果你是 LTS 或没有 AppInstall 的 Windows</h3><p>在信任完证书后，将 APPX 安装包拖到“WSAppPkgIns”上即可安装<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak22.png" alt="安装 Appx"><br><font color=green>当然你也可以用 Add-AppxPackage 安装，<del>那样会显得你很懂</del></font><br>如果缺少运行库或版本不符合的话可能会无法正常安装（命令行安装不会自动补全运行库）<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/appxbak/appxbak22.png" alt="报错"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag"># 软件</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/zh-CN/tutorial/iOS/ipadown/" rel="prev" title="抓包旧版本 IPA">
+                  <i class="fa fa-chevron-left"></i> 抓包旧版本 IPA
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/zh-CN/tutorial/Windows/isorepackage/" rel="next" title="自定义集合多版本的系统镜像">
+                  自定义集合多版本的系统镜像 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuCATs</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
