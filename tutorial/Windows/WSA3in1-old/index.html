@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="mask-icon" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png" color="#222">
+
+<link rel="stylesheet" href="/next/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"goo-aw233.github.io","root":"/next/","images":"/next/images","scheme":"Gemini","darkmode":true,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/next/js/config.js"></script>
+
+    <meta name="description" content="安装 Windows Subsystem for Android™ 以及 Root,Magisk,GApps 套件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装 WSA 及其它三件套（旧版）">
+<meta property="og:url" content="https://goo-aw233.github.io/next/tutorial/Windows/WSA3in1-old/index.html">
+<meta property="og:site_name" content="GuCATs&#39;摸鱼站">
+<meta property="og:description" content="安装 Windows Subsystem for Android™ 以及 Root,Magisk,GApps 套件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/cMpQnHSKIGFUbuz.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/eOy6bMIYdV5srcw.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/CtA8qs2zcxRYyi3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/lDxXiS8QPB74OeT.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/DfBHuXNbyMPQc6S.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/2Ya4D7thuCq53iA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/sxemKHcZ2bz85Pw.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/GgnsXAvJ4mTfl6N.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/yrKQltxfkDioS25.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/XyYd15EB9Pm3Mjz.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/XjZIwzN5CaUJ8Bs.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/nlOPxwCVGaeJhfj.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/ws5nWA9yCxNZ6Dp.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/4xikaAdqg2Cnzpw.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/Hzonj64T9lOEh3u.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/bBkn9TxiP3z6Zw2.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/30/El32OZAGpDYgew4.png">
+<meta property="article:published_time" content="2022-02-14T14:45:33.000Z">
+<meta property="article:modified_time" content="2023-01-05T02:38:07.670Z">
+<meta property="article:author" content="GuCATs">
+<meta property="article:tag" content="软件">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/07/30/cMpQnHSKIGFUbuz.png">
+
+
+<link rel="canonical" href="https://goo-aw233.github.io/next/tutorial/Windows/WSA3in1-old/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://goo-aw233.github.io/next/tutorial/Windows/WSA3in1-old/","path":"tutorial/Windows/WSA3in1-old/","title":"安装 WSA 及其它三件套（旧版）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>安装 WSA 及其它三件套（旧版） | GuCATs'摸鱼站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/next/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/next/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GuCATs'摸鱼站</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">海納百川，有容乃大</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-首页"><a href="/next/" rel="section"><i class="fas fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-标签"><a href="/next/tags/" rel="section"><i class="fas fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-分类"><a href="/next/categories/" rel="section"><i class="fas fa-folder-open fa-fw"></i>分类</a></li><li class="menu-item menu-item-归档"><a href="/next/archives/" rel="section"><i class="iconfont icon-guanli fa-fw"></i>归档</a></li><li class="menu-item menu-item-记事本"><a href="/next/notes/" rel="section"><i class="fa fa-sticky-note fa-fw"></i>记事本</a></li><li class="menu-item menu-item-帮助"><a href="/next/help/" rel="section"><i class="fa fa-question-circle fa-fw"></i>帮助</a></li><li class="menu-item menu-item-关于我"><a href="/next/about/" rel="section"><i class="fa-solid fa-address-card fa-fw"></i>关于我</a></li><li class="menu-item menu-item-友链"><a href="/next/link/" rel="section"><i class="fas fa-link fa-fw"></i>友链</a></li><li class="menu-item menu-item-站点地图"><a href="/next/sitemap.xml" rel="section"><i class="iconfont icon-browser fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-资源列表"><a href="/next/resources/" rel="section"><i class="iconfont icon-wenjianjia fa-fw"></i>资源列表</a></li><li class="menu-item menu-item-english-(united-states)"><a href="/next/en-us/" rel="section"><i class="fa-solid fa-earth-americas fa-fw"></i>English (United States)</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E5%89%8D%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">用前说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD-WSA-%E5%8F%8A%E5%85%B6%E5%AE%83%E4%B8%89%E4%BB%B6%E5%A5%97"><span class="nav-number">2.</span> <span class="nav-text">下载 WSA 及其它三件套</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%96%84%E8%AE%BE%E7%BD%AE%E5%8F%8A%E5%8F%8C%E5%87%BB%E5%AE%89%E8%A3%85%E5%8C%85%E6%9D%A5%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">完善设置及双击安装包来安装应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E5%96%84%E8%AE%BE%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">完善设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8"><span class="nav-number">4.2.</span> <span class="nav-text">安装应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-number">4.2.1.</span> <span class="nav-text">方法一：用软件安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%8F%8C%E5%87%BB%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8"><span class="nav-number">4.2.2.</span> <span class="nav-text">方法二：双击安装应用</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GuCATs</p>
+  <div class="site-description" itemprop="description">摒弃迂腐思想，顺应自由开放的时代潮流</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/next/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/next/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/next/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://goo-aw233.github.io/next/tutorial/Windows/WSA3in1-old/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/next/images/avatar.gif">
+      <meta itemprop="name" content="GuCATs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GuCATs'摸鱼站">
+      <meta itemprop="description" content="摒弃迂腐思想，顺应自由开放的时代潮流">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="安装 WSA 及其它三件套（旧版） | GuCATs'摸鱼站">
+      <meta itemprop="description" content="安装 Windows Subsystem for Android™ 以及 Root,Magisk,GApps 套件">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          安装 WSA 及其它三件套（旧版）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-14 22:45:33" itemprop="dateCreated datePublished" datetime="2022-02-14T22:45:33+08:00">2022-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-01-05 10:38:07" itemprop="dateModified" datetime="2023-01-05T10:38:07+08:00">2023-01-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/next/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/next/categories/%E6%95%99%E7%A8%8B/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">安装 Windows Subsystem for Android™ 以及 Root,Magisk,GApps 套件</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>因为原有的库使用太多 GitHub Actions 而被封禁，原库地址：<a target="_blank" rel="noopener" href="https://github.com/LSPosed/MagiskOnWSA">https://github.com/LSPosed/MagiskOnWSA</a><br>该教程不确保是否可以正常使用<br><font size=5><a href="/next/tutorial/Windows/WSA3in1/" title="安装 WSA 及其它三件套">新版教程链接</a></font></p>
+<hr>
+<h2 id="用前说明"><a href="#用前说明" class="headerlink" title="用前说明"></a>用前说明</h2><p>按下 <kbd>Windows 徽标键</kbd>+<kbd>R</kbd>，输入<code>optionalfeatures</code> 并回车，在里面选中 <code>Hyper-V</code> 和<code>虚拟机平台</code><br><img src="https://s2.loli.net/2022/07/30/cMpQnHSKIGFUbuz.png"><br><a target="_blank" rel="noopener" href="https://www.microsoft.com/store/productId/9NQPSL29BFFF">OpenCL 和 OpenGL 扩展包</a><br><a target="_blank" rel="noopener" href="https://ys8rx-my.sharepoint.com/:f:/g/personal/gucats_ys8rx_onmicrosoft_com/ErBct6X1MXVDu0gk8zVQucQBmopXB8TOSr21tl4tss5TWw">运行库</a><br><a target="_blank" rel="noopener" href="https://github.com/makazeu/WsaToolbox">WsaToolbox</a>（如果你会使用 ADB 命令可不使用）</p>
+<hr>
+<p>WSL 显卡驱动（如果是笔记本建议两个显卡都装）<br><a target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/download/19344/intel-graphics-windows-dch-drivers.html">Intel</a><br><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda/wsl">nVIDIA</a><br><a target="_blank" rel="noopener" href="https://www.amd.com/en/support/kb/release-notes/rn-rad-win-wsl-support">AMD</a></p>
+<h2 id="下载-WSA-及其它三件套"><a href="#下载-WSA-及其它三件套" class="headerlink" title="下载 WSA 及其它三件套"></a>下载 WSA 及其它三件套</h2><p>访问 GitHub 并登陆自己的账户：<a target="_blank" rel="noopener" href="https://github.com/Goo-aw233/MagiskOnWSA-2">https://github.com/Goo-aw233/MagiskOnWSA-2</a><br>在该页面中点击右上角的 Fork<br><img src="https://s2.loli.net/2022/07/30/eOy6bMIYdV5srcw.png"><br>等待完成后会跳转到自己的主页，然后点击库下方的 Actions<br><img src="https://s2.loli.net/2022/07/30/CtA8qs2zcxRYyi3.png"><br>在页面中选择 Build WSA，然后点击右边的 Run workflow，并将里面的内容修改（如果你不懂什么意思可参照下表）<br>最后点击 Run workflow<br><img src="https://s2.loli.net/2022/07/30/lDxXiS8QPB74OeT.png"></p>
+<hr>
+<p>Run Workflow 示意图<br><img src="https://s2.loli.net/2022/07/30/DfBHuXNbyMPQc6S.png"><br>如果无法区分 GApps 应选什么可以参考以下图表（或者看 OpenGApps 的 <a target="_blank" rel="noopener" href="https://github.com/opengapps/opengapps/wiki#variants">Wiki</a>）<br><img src="https://s2.loli.net/2022/07/30/2Ya4D7thuCq53iA.png"></p>
+<hr>
+<p>运行过程可能有6分钟左右<br><img src="https://s2.loli.net/2022/07/30/sxemKHcZ2bz85Pw.png"><br>完成后点击 Build WSA<br><img src="https://s2.loli.net/2022/07/30/GgnsXAvJ4mTfl6N.png"><br>在下面点击构建好的 WSA 即可下载<br><img src="https://s2.loli.net/2022/07/30/yrKQltxfkDioS25.png"><br>等待一下就开始下载了（单线程会比较慢，早上速度会快点）<br><img src="https://s2.loli.net/2022/07/30/XyYd15EB9Pm3Mjz.png"><br>下载完后解压到任意路径即可（<font color=yellow size=4>如果你不需要用 WSA 了才可删除该文件夹，所以请选择解压到合适路径</font>）</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在设置中打开开发者选项<br><img src="https://s2.loli.net/2022/07/30/XjZIwzN5CaUJ8Bs.png"><br>以<font size=4 color=yellow>管理员身份运行</font> PowerShell 或 Windows Terminal（终端）<br>然后输入以下命令</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> &lt;解压路径&gt;</span><br><span class="line">如</span><br><span class="line"><span class="built_in">cd</span> C:\Program Files\Windows Subsystem <span class="keyword">for</span> Android</span><br><span class="line"><span class="built_in">Add-AppxPackage</span> <span class="literal">-Register</span> AppxManifest.xml</span><br></pre></td></tr></table></figure>
+<p>等待一会就安装好了<br><img src="https://s2.loli.net/2022/07/30/nlOPxwCVGaeJhfj.png"></p>
+<h2 id="完善设置及双击安装包来安装应用"><a href="#完善设置及双击安装包来安装应用" class="headerlink" title="完善设置及双击安装包来安装应用"></a>完善设置及双击安装包来安装应用</h2><h3 id="完善设置"><a href="#完善设置" class="headerlink" title="完善设置"></a>完善设置</h3><p>打开<code>适用于 Android™ 的 Windows 子系统设置</code><br>把<code>用于 Android> 的应用的 GPU;</code>改为独立显卡<br><img src="https://s2.loli.net/2022/07/30/ws5nWA9yCxNZ6Dp.png"><br>然后在旁边的<code>开发人员</code>选项中，把<code>开发人员模式</code>打开<br><img src="https://s2.loli.net/2022/07/30/4xikaAdqg2Cnzpw.png"></p>
+<h3 id="安装应用"><a href="#安装应用" class="headerlink" title="安装应用"></a>安装应用</h3><p><font color=purple size=4>没吃到那个红利，没给酷安打广告（（（</font></p>
+<h4 id="方法一：用软件安装"><a href="#方法一：用软件安装" class="headerlink" title="方法一：用软件安装"></a>方法一：用软件安装</h4><p>打开 WsaToolbox，点击安装APK，再点击选择 APK 并选择你下载好的 apk 文件，最后点击安装 APK<br><img src="https://s2.loli.net/2022/07/30/Hzonj64T9lOEh3u.png"><br>安装完成后可在开始菜单中找到它们<br>如果你不想找应用麻烦，可以在<a target="_blank" rel="noopener" href="https://coolapk.com/">酷安</a> 自带的应用商店下载</p>
+<h4 id="方法二：双击安装应用"><a href="#方法二：双击安装应用" class="headerlink" title="方法二：双击安装应用"></a>方法二：双击安装应用</h4><p>在 Microsoft Store 中安装 <a target="_blank" rel="noopener" href="https://www.microsoft.com/store/productId/9P2JFQ43FPPG">APK 安装程序</a><br>这样就可以像 appx 那样双击安装了<br><img src="https://s2.loli.net/2022/07/30/bBkn9TxiP3z6Zw2.png"></p>
+<hr>
+<p>不过可能需要先下载 ADB<br><img src="https://s2.loli.net/2022/07/30/El32OZAGpDYgew4.png"></p>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/next/tags/%E8%BD%AF%E4%BB%B6/" rel="tag"># 软件</a>
+              <a href="/next/tags/Windows/" rel="tag"># Windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/next/tutorial/VM/VMware/vmdmg/" rel="prev" title="Workstation 用 DMG 镜像安装 macOS">
+                  <i class="fa fa-chevron-left"></i> Workstation 用 DMG 镜像安装 macOS
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/next/tutorial/Windows/WSA3in1/" rel="next" title="安装 WSA 及其它三件套">
+                  安装 WSA 及其它三件套 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuCATs</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/next/js/comments.js"></script><script src="/next/js/utils.js"></script><script src="/next/js/motion.js"></script><script src="/next/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

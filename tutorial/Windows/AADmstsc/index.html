@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="mask-icon" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png" color="#222">
+
+<link rel="stylesheet" href="/next/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"goo-aw233.github.io","root":"/next/","images":"/next/images","scheme":"Gemini","darkmode":true,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/next/js/config.js"></script>
+
+    <meta name="description" content="远程桌面到登录到 Azure AD 账户的 Windows 设备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="远程桌面到登录 AzureAD 的设备">
+<meta property="og:url" content="https://goo-aw233.github.io/next/tutorial/Windows/AADmstsc/index.html">
+<meta property="og:site_name" content="GuCATs&#39;摸鱼站">
+<meta property="og:description" content="远程桌面到登录到 Azure AD 账户的 Windows 设备">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/AADmstsc/AADmstsc1.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/AADmstsc/AADmstsc2.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/AADmstsc/AADmstsc3.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/AADmstsc/AADmstsc4.png">
+<meta property="og:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/AADmstsc/AADmstsc5.png">
+<meta property="article:published_time" content="2022-12-25T15:35:36.000Z">
+<meta property="article:modified_time" content="2023-04-07T15:30:49.942Z">
+<meta property="article:author" content="GuCATs">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/AADmstsc/AADmstsc1.png">
+
+
+<link rel="canonical" href="https://goo-aw233.github.io/next/tutorial/Windows/AADmstsc/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://goo-aw233.github.io/next/tutorial/Windows/AADmstsc/","path":"tutorial/Windows/AADmstsc/","title":"远程桌面到登录 AzureAD 的设备"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>远程桌面到登录 AzureAD 的设备 | GuCATs'摸鱼站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/next/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/next/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GuCATs'摸鱼站</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">海納百川，有容乃大</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-首页"><a href="/next/" rel="section"><i class="fas fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-标签"><a href="/next/tags/" rel="section"><i class="fas fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-分类"><a href="/next/categories/" rel="section"><i class="fas fa-folder-open fa-fw"></i>分类</a></li><li class="menu-item menu-item-归档"><a href="/next/archives/" rel="section"><i class="iconfont icon-guanli fa-fw"></i>归档</a></li><li class="menu-item menu-item-记事本"><a href="/next/notes/" rel="section"><i class="fa fa-sticky-note fa-fw"></i>记事本</a></li><li class="menu-item menu-item-帮助"><a href="/next/help/" rel="section"><i class="fa fa-question-circle fa-fw"></i>帮助</a></li><li class="menu-item menu-item-关于我"><a href="/next/about/" rel="section"><i class="fa-solid fa-address-card fa-fw"></i>关于我</a></li><li class="menu-item menu-item-友链"><a href="/next/link/" rel="section"><i class="fas fa-link fa-fw"></i>友链</a></li><li class="menu-item menu-item-站点地图"><a href="/next/sitemap.xml" rel="section"><i class="iconfont icon-browser fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-资源列表"><a href="/next/resources/" rel="section"><i class="iconfont icon-wenjianjia fa-fw"></i>资源列表</a></li><li class="menu-item menu-item-english-(united-states)"><a href="/next/en-us/" rel="section"><i class="fa-solid fa-earth-americas fa-fw"></i>English (United States)</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%AE%BE%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">配置设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">2.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GuCATs</p>
+  <div class="site-description" itemprop="description">摒弃迂腐思想，顺应自由开放的时代潮流</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/next/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/next/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/next/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://goo-aw233.github.io/next/tutorial/Windows/AADmstsc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/next/images/avatar.gif">
+      <meta itemprop="name" content="GuCATs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GuCATs'摸鱼站">
+      <meta itemprop="description" content="摒弃迂腐思想，顺应自由开放的时代潮流">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="远程桌面到登录 AzureAD 的设备 | GuCATs'摸鱼站">
+      <meta itemprop="description" content="远程桌面到登录到 Azure AD 账户的 Windows 设备">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          远程桌面到登录 AzureAD 的设备
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-12-25 23:35:36" itemprop="dateCreated datePublished" datetime="2022-12-25T23:35:36+08:00">2022-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-04-07 23:30:49" itemprop="dateModified" datetime="2023-04-07T23:30:49+08:00">2023-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/next/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/next/categories/%E6%95%99%E7%A8%8B/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">远程桌面到登录到 Azure AD 账户的 Windows 设备</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="配置设备"><a href="#配置设备" class="headerlink" title="配置设备"></a>配置设备</h2><p>在被操控的设备中执行以下操作：<br>按下 <kbd>Windows 徽标键</kbd>+<kbd>R</kbd>，输入 <code>SystemPropertiesRemote</code> 并回车<br>在“远程”页，选择“允许远程连接到此计算机(L)”，并取消勾选“仅允许运行使用网络级别身份验证的远程桌面的计算机连接(建议)(N)”，最后点击“确定”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/AADmstsc/AADmstsc1.png" alt="开启远程桌面"></p>
+<p>如果被操控的设备中 Azure AD 账户不为管理员则需要进行以下操作，否则请跳过该段</p>
+<hr>
+<p>在“搜索”中搜索 <code>PowerShell</code>，右键选择“以管理员身份运行”<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/AADmstsc/AADmstsc2.png" alt="运行 PowerShell"><br>接着在 PowerShell 中输入以下内容</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net localgroup <span class="string">&quot;Remote Desktop Users&quot;</span> /add <span class="string">&quot;AzureAD\&lt;Azure AD 的账户域名&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>比如我的 Azure AD 账户域名是 <code><a href="mailto:&#x31;&#49;&#52;&#53;&#x31;&#x34;&#x40;&#104;&#111;&#x6d;&#x6f;&#46;&#99;&#x6f;&#x6d;">&#x31;&#49;&#52;&#53;&#x31;&#x34;&#x40;&#104;&#111;&#x6d;&#x6f;&#46;&#99;&#x6f;&#x6d;</a></code>，则命令就是（包括引号）</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net localgroup <span class="string">&quot;Remote Desktop Users&quot;</span> /add <span class="string">&quot;AzureAD\114514@homo.com&quot;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/AADmstsc/AADmstsc3.png" alt="添加用户"></p>
+<hr>
+<p>如果操控设备为 Windows 10 1607 及更高版本的 Windows，则需要在<a href="ms-settings:workplace">设置</a>中登录到与被操控的设备同样的 Azure AD 域中<br><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/AADmstsc/AADmstsc4.png" alt="登录 Azure AD"></p>
+<p>最后在登录时，登录的账户应为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AzureAD\&lt;Azure AD 的账户域名&gt;</span><br></pre></td></tr></table></figure>
+<p>比如我的 Azure AD 账户域名是 <code><a href="mailto:&#49;&#x31;&#52;&#53;&#x31;&#x34;&#x40;&#x68;&#x6f;&#x6d;&#111;&#46;&#99;&#x6f;&#109;">&#49;&#x31;&#52;&#53;&#x31;&#x34;&#x40;&#x68;&#x6f;&#x6d;&#111;&#46;&#99;&#x6f;&#109;</a></code>，账户就是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AzureAD\114514@homo.com</span><br></pre></td></tr></table></figure>
+<p><img src="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/AADmstsc/AADmstsc5.png" alt="登录到设备"></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><li>本地和远程电脑都必须运行 Windows 10 1607 或更高版本，不支持与运行早期版本的 Windows 10 与已加入 Azure AD 的电脑建立远程连接</li>
+<li>从进行连接的本地电脑，如果运行 Windows 10 1607 及更高版本，则必须已加入 Azure AD ，或已加入混合 Azure AD；如果使用 Windows 10 2004 及更高版本，则必须注册到 Azure AD， 不支持从未加入的设备或非 Windows 10/11 设备远程连接到已加入 Azure AD 的电脑</li>
+<li>本地电脑和远程电脑必须位于同一 Azure AD 租户中，远程桌面不支持 Azure AD B2B 来宾</li>
+<li>确保在用于连接到远程电脑的客户端电脑上关闭远程 Credential Guard（Windows 10版本 1607 中的一项新功能）</li>
+
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/windows/client-management/connect-to-remote-aadj-pc">Microsoft Learn</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/next/tags/Windows/" rel="tag"># Windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/next/tutorial/Windows/blockfeatureupd/" rel="prev" title="屏蔽 Windows 各种更新">
+                  <i class="fa fa-chevron-left"></i> 屏蔽 Windows 各种更新
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/next/tutorial/Hexo/update/" rel="next" title="更新 Hexo 和插件、主题">
+                  更新 Hexo 和插件、主题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuCATs</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/next/js/comments.js"></script><script src="/next/js/utils.js"></script><script src="/next/js/motion.js"></script><script src="/next/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

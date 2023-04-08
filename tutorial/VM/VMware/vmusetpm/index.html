@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png">
+  <link rel="mask-icon" href="https://gcore.jsdelivr.net/gh/Goo-aw233/WebSiteResources@main/Pics/Blog/Favicon.png" color="#222">
+
+<link rel="stylesheet" href="/next/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"goo-aw233.github.io","root":"/next/","images":"/next/images","scheme":"Gemini","darkmode":true,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/next/js/config.js"></script>
+
+    <meta name="description" content="通过修改 .vmx 来实现 VMware Workstation 免加密启用 TPM 模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Workstation 免加密启用TPM">
+<meta property="og:url" content="https://goo-aw233.github.io/next/tutorial/VM/VMware/vmusetpm/index.html">
+<meta property="og:site_name" content="GuCATs&#39;摸鱼站">
+<meta property="og:description" content="通过修改 .vmx 来实现 VMware Workstation 免加密启用 TPM 模块">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/07/31/LojuP3C4qzSDrmk.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/31/1dpIObz3BXcCNDA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/31/yCcWQMfFxJ2wROn.png">
+<meta property="article:published_time" content="2021-11-20T13:42:37.000Z">
+<meta property="article:modified_time" content="2022-08-21T15:35:05.402Z">
+<meta property="article:author" content="GuCATs">
+<meta property="article:tag" content="VMware Workstation">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/07/31/LojuP3C4qzSDrmk.png">
+
+
+<link rel="canonical" href="https://goo-aw233.github.io/next/tutorial/VM/VMware/vmusetpm/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://goo-aw233.github.io/next/tutorial/VM/VMware/vmusetpm/","path":"tutorial/VM/VMware/vmusetpm/","title":"Workstation 免加密启用TPM"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Workstation 免加密启用TPM | GuCATs'摸鱼站</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/next/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/next/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">GuCATs'摸鱼站</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">海納百川，有容乃大</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-首页"><a href="/next/" rel="section"><i class="fas fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-标签"><a href="/next/tags/" rel="section"><i class="fas fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-分类"><a href="/next/categories/" rel="section"><i class="fas fa-folder-open fa-fw"></i>分类</a></li><li class="menu-item menu-item-归档"><a href="/next/archives/" rel="section"><i class="iconfont icon-guanli fa-fw"></i>归档</a></li><li class="menu-item menu-item-记事本"><a href="/next/notes/" rel="section"><i class="fa fa-sticky-note fa-fw"></i>记事本</a></li><li class="menu-item menu-item-帮助"><a href="/next/help/" rel="section"><i class="fa fa-question-circle fa-fw"></i>帮助</a></li><li class="menu-item menu-item-关于我"><a href="/next/about/" rel="section"><i class="fa-solid fa-address-card fa-fw"></i>关于我</a></li><li class="menu-item menu-item-友链"><a href="/next/link/" rel="section"><i class="fas fa-link fa-fw"></i>友链</a></li><li class="menu-item menu-item-站点地图"><a href="/next/sitemap.xml" rel="section"><i class="iconfont icon-browser fa-fw"></i>站点地图</a></li><li class="menu-item menu-item-资源列表"><a href="/next/resources/" rel="section"><i class="iconfont icon-wenjianjia fa-fw"></i>资源列表</a></li><li class="menu-item menu-item-english-(united-states)"><a href="/next/en-us/" rel="section"><i class="fa-solid fa-earth-americas fa-fw"></i>English (United States)</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E5%89%8D%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">用前说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%B9%B6%E5%90%AF%E7%94%A8-UEFI"><span class="nav-number">2.</span> <span class="nav-text">创建一个虚拟机 并启用 UEFI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-vmx-%E4%B8%AD%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">在 .vmx 中添加代码</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">GuCATs</p>
+  <div class="site-description" itemprop="description">摒弃迂腐思想，顺应自由开放的时代潮流</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/next/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/next/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/next/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://goo-aw233.github.io/next/tutorial/VM/VMware/vmusetpm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/next/images/avatar.gif">
+      <meta itemprop="name" content="GuCATs">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GuCATs'摸鱼站">
+      <meta itemprop="description" content="摒弃迂腐思想，顺应自由开放的时代潮流">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Workstation 免加密启用TPM | GuCATs'摸鱼站">
+      <meta itemprop="description" content="通过修改 .vmx 来实现 VMware Workstation 免加密启用 TPM 模块">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Workstation 免加密启用TPM
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-20 21:42:37" itemprop="dateCreated datePublished" datetime="2021-11-20T21:42:37+08:00">2021-11-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-08-21 23:35:05" itemprop="dateModified" datetime="2022-08-21T23:35:05+08:00">2022-08-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/next/categories/VMware/" itemprop="url" rel="index"><span itemprop="name">VMware</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/next/categories/VMware/Workstation/" itemprop="url" rel="index"><span itemprop="name">Workstation</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">通过修改 .vmx 来实现 VMware Workstation 免加密启用 TPM 模块</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="用前说明"><a href="#用前说明" class="headerlink" title="用前说明"></a>用前说明</h2><p>该功能仅适用于 <code>Workstation 16.2</code> 及以上的版本，<font size=4 color=red>并且会导致虚拟机加密无法移除</font><br>文件迁移或系统重装后会提示输入密码，目前暂无解决办法</p>
+<h2 id="创建一个虚拟机-并启用-UEFI"><a href="#创建一个虚拟机-并启用-UEFI" class="headerlink" title="创建一个虚拟机 并启用 UEFI"></a>创建一个虚拟机 并启用 UEFI</h2><p>安全启动可以不选择启用<br><img src="https://s2.loli.net/2022/07/31/LojuP3C4qzSDrmk.png"></p>
+<h2 id="在-vmx-中添加代码"><a href="#在-vmx-中添加代码" class="headerlink" title="在 .vmx 中添加代码"></a>在 .vmx 中添加代码</h2><p>先关闭 VMware Workstation 主程序<br>用任意编辑器打开 .vmx 文件 在结尾添加以下代码后保存</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">managedvm.autoAddVTPM = &quot;software&quot;</span><br></pre></td></tr></table></figure>
+<p>如图所示<br><img src="https://s2.loli.net/2022/07/31/1dpIObz3BXcCNDA.png"><br>重新打开 VMware Workstation 并选中虚拟机<br>这样你就可以做到免加密且开启 TPM 了<br><img src="https://s2.loli.net/2022/07/31/yCcWQMfFxJ2wROn.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/next/tags/VMware-Workstation/" rel="tag"># VMware Workstation</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/next/others/tools/" rel="prev" title="Windows 实用工具">
+                  <i class="fa fa-chevron-left"></i> Windows 实用工具
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/next/tutorial/VM/VMware/PEinstallOS/" rel="next" title="Workstation 使用 PE 装系统">
+                  Workstation 使用 PE 装系统 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GuCATs</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/next/js/comments.js"></script><script src="/next/js/utils.js"></script><script src="/next/js/motion.js"></script><script src="/next/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
